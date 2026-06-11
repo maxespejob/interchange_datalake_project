@@ -359,6 +359,7 @@ def save_chunk_to_s3(records: list[dict], date_str: str, chunk_id: int) -> str:
                 "from_currency": [r["from_currency"] for r in valid_records],
                 "to_currency": [r["to_currency"] for r in valid_records],
                 "fx_rate": [r["fx_rate"] for r in valid_records],
+                "creation_timestamp": datetime.now(),
             }
         )
 
@@ -455,6 +456,7 @@ def process_sub_chunk(
                 "from_currency": from_curr,
                 "to_currency": to_curr,
                 "fx_rate": "",
+                "creation_timestamp": datetime.now(),
             }
 
             proxy = proxy_manager.pick(idx)
@@ -506,6 +508,7 @@ def process_sub_chunk(
                         "from_currency": from_curr,
                         "to_currency": to_curr,
                         "fx_rate": fx_rate,
+                        "creation_timestamp": datetime.now(),
                     }
                 )
                 logger.info(

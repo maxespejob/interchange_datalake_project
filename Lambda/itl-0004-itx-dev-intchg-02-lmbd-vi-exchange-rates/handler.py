@@ -241,6 +241,7 @@ def save_chunk_to_s3(records: list[dict], date_str: str, chunk_id: int) -> str:
                 "from_currency": [r["from_currency"] for r in valid_records],
                 "to_currency": [r["to_currency"] for r in valid_records],
                 "fx_rate": [r["fx_rate"] for r in valid_records],
+                "creation_timestamp": datetime.now()
             }
         )
 
@@ -398,6 +399,7 @@ async def scrape_chunk(date: str, pairs: list, chunk_id: int) -> list[dict]:
                     "from_currency": from_currency,
                     "to_currency": to_currency,
                     "fx_rate": None,
+                    "creation_timestamp": datetime.now()
                 }
 
                 try:

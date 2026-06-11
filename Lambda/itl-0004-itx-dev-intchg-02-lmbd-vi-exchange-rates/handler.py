@@ -225,7 +225,7 @@ def save_chunk_to_s3(records: list[dict], date_str: str, chunk_id: int) -> str:
     Skips records with missing fx_rate values.
     Returns the S3 key of the saved file.
     """
-    current_timestamp = datetime.now().strftime("%Y-%m-%d")
+    current_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     s3_key = build_s3_key(date_str, chunk_id)
     valid_records = [r for r in records if r["fx_rate"] is not None]
@@ -403,7 +403,7 @@ async def scrape_chunk(date: str, pairs: list, chunk_id: int) -> list[dict]:
                     "from_currency": from_currency,
                     "to_currency": to_currency,
                     "fx_rate": None,
-                    "creation_timestamp": datetime.now().strftime("%Y-%m-%d")
+                    "creation_timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }
 
                 try:

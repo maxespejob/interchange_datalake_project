@@ -343,10 +343,12 @@ def save_chunk_to_s3(records: list[dict], date_str: str, chunk_id: int) -> str:
     s3_key = (
         f"{S3_PREFIX}/exchange_date={date_str}/{file_date}_chunk_{chunk_id}.parquet"
     )
-
+    current_timestamp = datetime.now().strftime("%Y-%m-%d")
+    
     valid_records = [r for r in records if r["fx_rate"] != ""]
     skipped_count = len(records) - len(valid_records)
-
+    num_records = len(valid_records)
+    
     if not valid_records:
         logger.warning(
             f"[save_chunk_to_s3] chunk_id={chunk_id} | No valid records, skipping upload"
@@ -359,7 +361,7 @@ def save_chunk_to_s3(records: list[dict], date_str: str, chunk_id: int) -> str:
                 "from_currency": [r["from_currency"] for r in valid_records],
                 "to_currency": [r["to_currency"] for r in valid_records],
                 "fx_rate": [r["fx_rate"] for r in valid_records],
-                "creation_timestamp": datetime.now(),
+                "creation_timestamp": [current_timestamp] * num_records,
             }
         )
 
@@ -456,7 +458,7 @@ def process_sub_chunk(
                 "from_currency": from_curr,
                 "to_currency": to_curr,
                 "fx_rate": "",
-                "creation_timestamp": datetime.now(),
+                "creation_timestamp": datetime.now().strftime("%Y-%m-%d"),
             }
 
             proxy = proxy_manager.pick(idx)
@@ -508,7 +510,7 @@ def process_sub_chunk(
                         "from_currency": from_curr,
                         "to_currency": to_curr,
                         "fx_rate": fx_rate,
-                        "creation_timestamp": datetime.now(),
+                        "creation_timestamp": datetime.now().strftime("%Y-%m-%d"),
                     }
                 )
                 logger.info(

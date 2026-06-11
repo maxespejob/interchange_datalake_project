@@ -225,23 +225,27 @@ def save_chunk_to_s3(records: list[dict], date_str: str, chunk_id: int) -> str:
     Skips records with missing fx_rate values.
     Returns the S3 key of the saved file.
     """
+    current_timestamp = datetime.now().strftime("%Y-%m-%d")
+    
     s3_key = build_s3_key(date_str, chunk_id)
     valid_records = [r for r in records if r["fx_rate"] is not None]
     skipped_count = len(records) - len(valid_records)
-
+    
     if not valid_records:
         logger.warning(
             f"[save_chunk_to_s3] chunk_id={chunk_id} | No valid records to save, skipping upload"
         )
         return s3_key
-
+    
+    num_records = len(valid_records)
+    
     try:
         table = pa.table(
             {
                 "from_currency": [r["from_currency"] for r in valid_records],
                 "to_currency": [r["to_currency"] for r in valid_records],
                 "fx_rate": [r["fx_rate"] for r in valid_records],
-                "creation_timestamp": datetime.now()
+                "creation_timestamp": [current_timestamp]*num_records
             }
         )
 
@@ -399,7 +403,7 @@ async def scrape_chunk(date: str, pairs: list, chunk_id: int) -> list[dict]:
                     "from_currency": from_currency,
                     "to_currency": to_currency,
                     "fx_rate": None,
-                    "creation_timestamp": datetime.now()
+                    "creation_timestamp": datetime.now().strftime("%Y-%m-%d")
                 }
 
                 try:

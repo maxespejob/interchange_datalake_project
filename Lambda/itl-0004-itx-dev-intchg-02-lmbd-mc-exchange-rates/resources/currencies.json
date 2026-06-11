@@ -1,0 +1,604 @@
+{
+      "currencies": [
+        {
+          "alphaCd": "AFN",
+          "currNam": "AFGHANISTAN AFGHANI"
+        },
+        {
+          "alphaCd": "ALL",
+          "currNam": "ALBANIAN LEK"
+        },
+        {
+          "alphaCd": "DZD",
+          "currNam": "ALGERIAN DINAR"
+        },
+        {
+          "alphaCd": "AOA",
+          "currNam": "ANGOLAN KWANZA"
+        },
+        {
+          "alphaCd": "ARS",
+          "currNam": "ARGENTINE PESO"
+        },
+        {
+          "alphaCd": "AMD",
+          "currNam": "ARMENIAN DRAM"
+        },
+        {
+          "alphaCd": "AWG",
+          "currNam": "ARUBAN GUILDER"
+        },
+        {
+          "alphaCd": "AUD",
+          "currNam": "AUSTRALIAN DOLLAR"
+        },
+        {
+          "alphaCd": "AZN",
+          "currNam": "AZERBAIJAN MANAT"
+        },
+        {
+          "alphaCd": "BSD",
+          "currNam": "BAHAMIAN DOLLAR"
+        },
+        {
+          "alphaCd": "BHD",
+          "currNam": "BAHRAIN DINAR"
+        },
+        {
+          "alphaCd": "BDT",
+          "currNam": "BANGLADESH TAKA"
+        },
+        {
+          "alphaCd": "BBD",
+          "currNam": "BARBADOS DOLLAR"
+        },
+        {
+          "alphaCd": "BYN",
+          "currNam": "BELARUSSIAN RUBLE"
+        },
+        {
+          "alphaCd": "BZD",
+          "currNam": "BELIZE DOLLAR "
+        },
+        {
+          "alphaCd": "BMD",
+          "currNam": "BERMUDAN DOLLAR"
+        },
+        {
+          "alphaCd": "BTN",
+          "currNam": "BHUTANESE NGULTRUM  "
+        },
+        {
+          "alphaCd": "BOB",
+          "currNam": "BOLIVIAN BOLIVIANO"
+        },
+        {
+          "alphaCd": "BAM",
+          "currNam": "BOSNIAN CONVERTIBLE MARK"
+        },
+        {
+          "alphaCd": "BWP",
+          "currNam": "BOTSWANA PULA"
+        },
+        {
+          "alphaCd": "BRL",
+          "currNam": "BRAZILIAN REAL"
+        },
+        {
+          "alphaCd": "BND",
+          "currNam": "BRUNEI DOLLAR"
+        },
+        {
+          "alphaCd": "BIF",
+          "currNam": "BURUNDI FRANC"
+        },
+        {
+          "alphaCd": "KHR",
+          "currNam": "CAMBODIAN RIEL"
+        },
+        {
+          "alphaCd": "CAD",
+          "currNam": "CANADIAN DOLLAR"
+        },
+        {
+          "alphaCd": "CVE",
+          "currNam": "CAPE VERDE ESCUDO"
+        },
+        {
+          "alphaCd": "XCG",
+          "currNam": "CARIBBEAN GUILDER"
+        },
+        {
+          "alphaCd": "KYD",
+          "currNam": "CAYMAN ISLAND DOLLAR   "
+        },
+        {
+          "alphaCd": "XOF",
+          "currNam": "CFA FRANC BCEAO"
+        },
+        {
+          "alphaCd": "XAF",
+          "currNam": "CFA FRANC BEAC"
+        },
+        {
+          "alphaCd": "XPF",
+          "currNam": "CFP FRANC"
+        },
+        {
+          "alphaCd": "CLP",
+          "currNam": "CHILEAN PESO"
+        },
+        {
+          "alphaCd": "CNY",
+          "currNam": "CHINA YUAN RENMINBI"
+        },
+        {
+          "alphaCd": "COP",
+          "currNam": "COLOMBIAN PESO"
+        },
+        {
+          "alphaCd": "KMF",
+          "currNam": "COMOROS FRANC"
+        },
+        {
+          "alphaCd": "CDF",
+          "currNam": "CONGOLESE FRANC"
+        },
+        {
+          "alphaCd": "CRC",
+          "currNam": "COSTA RICA COLON"
+        },
+        {
+          "alphaCd": "CUP",
+          "currNam": "CUBAN PESO"
+        },
+        {
+          "alphaCd": "CZK",
+          "currNam": "CZECH KORUNA"
+        },
+        {
+          "alphaCd": "DKK",
+          "currNam": "DANISH KRONE"
+        },
+        {
+          "alphaCd": "DJF",
+          "currNam": "DJIBOUTI FRANC"
+        },
+        {
+          "alphaCd": "DOP",
+          "currNam": "DOMINICAN PESO"
+        },
+        {
+          "alphaCd": "XCD",
+          "currNam": "EAST CARIBBEAN DOLLAR"
+        },
+        {
+          "alphaCd": "EGP",
+          "currNam": "EGYPTIAN POUND"
+        },
+        {
+          "alphaCd": "SVC",
+          "currNam": "EL SALVADOR COLON   "
+        },
+        {
+          "alphaCd": "ETB",
+          "currNam": "ETHIOPIA BIRR"
+        },
+        {
+          "alphaCd": "EUR",
+          "currNam": "EURO"
+        },
+        {
+          "alphaCd": "FKP",
+          "currNam": "FALKLAND ISLAND POUND"
+        },
+        {
+          "alphaCd": "FJD",
+          "currNam": "FIJI DOLLAR"
+        },
+        {
+          "alphaCd": "GMD",
+          "currNam": "GAMBIA DALASI"
+        },
+        {
+          "alphaCd": "GEL",
+          "currNam": "GEORGIAN LARI"
+        },
+        {
+          "alphaCd": "GHS",
+          "currNam": "GHANAIAN CEDI"
+        },
+        {
+          "alphaCd": "GIP",
+          "currNam": "GIBRALTAR POUND    "
+        },
+        {
+          "alphaCd": "GBP",
+          "currNam": "GREAT BRITISH POUND"
+        },
+        {
+          "alphaCd": "GTQ",
+          "currNam": "GUATEMALA QUETZAL   "
+        },
+        {
+          "alphaCd": "GNF",
+          "currNam": "GUINEA FRANC"
+        },
+        {
+          "alphaCd": "GYD",
+          "currNam": "GUYANA DOLLAR"
+        },
+        {
+          "alphaCd": "HTG",
+          "currNam": "HAITI GOURDE"
+        },
+        {
+          "alphaCd": "HNL",
+          "currNam": "HONDURAS LEMPIRA"
+        },
+        {
+          "alphaCd": "HKD",
+          "currNam": "HONG KONG DOLLAR"
+        },
+        {
+          "alphaCd": "HUF",
+          "currNam": "HUNGARIAN FORINT"
+        },
+        {
+          "alphaCd": "ISK",
+          "currNam": "ICELANDIC KRONA"
+        },
+        {
+          "alphaCd": "INR",
+          "currNam": "INDIAN RUPEE"
+        },
+        {
+          "alphaCd": "IDR",
+          "currNam": "INDONESIAN RUPIAH"
+        },
+        {
+          "alphaCd": "IQD",
+          "currNam": "IRAQ DINAR"
+        },
+        {
+          "alphaCd": "ILS",
+          "currNam": "ISRAELI SHEQEL"
+        },
+        {
+          "alphaCd": "JMD",
+          "currNam": "JAMAICAN DOLLAR"
+        },
+        {
+          "alphaCd": "JPY",
+          "currNam": "JAPANESE YEN"
+        },
+        {
+          "alphaCd": "JOD",
+          "currNam": "JORDAN DINAR"
+        },
+        {
+          "alphaCd": "KZT",
+          "currNam": "KAZAKHSTAN TENGE    "
+        },
+        {
+          "alphaCd": "KES",
+          "currNam": "KENYAN SHILLING"
+        },
+        {
+          "alphaCd": "KWD",
+          "currNam": "KUWAITI DINAR      "
+        },
+        {
+          "alphaCd": "KGS",
+          "currNam": "KYRGYZSTAN SOM      "
+        },
+        {
+          "alphaCd": "LAK",
+          "currNam": "LAOTIAN KIP"
+        },
+        {
+          "alphaCd": "LBP",
+          "currNam": "LEBANESE POUND     "
+        },
+        {
+          "alphaCd": "LSL",
+          "currNam": "LESOTHO LOTI        "
+        },
+        {
+          "alphaCd": "LRD",
+          "currNam": "LIBERIAN DOLLAR"
+        },
+        {
+          "alphaCd": "LYD",
+          "currNam": "LIBYA DINAR"
+        },
+        {
+          "alphaCd": "MOP",
+          "currNam": "MACAU PATACA "
+        },
+        {
+          "alphaCd": "MKD",
+          "currNam": "MACEDONIA DENAR"
+        },
+        {
+          "alphaCd": "MGA",
+          "currNam": "MALAGASCY ARIARY"
+        },
+        {
+          "alphaCd": "MWK",
+          "currNam": "MALAWI KWACHA       "
+        },
+        {
+          "alphaCd": "MYR",
+          "currNam": "MALAYSIAN RINGGIT"
+        },
+        {
+          "alphaCd": "MVR",
+          "currNam": "MALDIVE RUFIYAA"
+        },
+        {
+          "alphaCd": "MRU",
+          "currNam": "MAURITANIA OUGUIYA NEW"
+        },
+        {
+          "alphaCd": "MUR",
+          "currNam": "MAURITIAN RUPEE"
+        },
+        {
+          "alphaCd": "MXN",
+          "currNam": "MEXICAN PESO"
+        },
+        {
+          "alphaCd": "MDL",
+          "currNam": "MOLDOVA LEU        "
+        },
+        {
+          "alphaCd": "MNT",
+          "currNam": "MONGOLIA TUGRIK    "
+        },
+        {
+          "alphaCd": "MAD",
+          "currNam": "MOROCCAN DIRHAM"
+        },
+        {
+          "alphaCd": "MZN",
+          "currNam": "MOZAMBIQUE METICAL"
+        },
+        {
+          "alphaCd": "MMK",
+          "currNam": "MYANMAR KYAT    "
+        },
+        {
+          "alphaCd": "NAD",
+          "currNam": "NAMIBIA DOLLAR"
+        },
+        {
+          "alphaCd": "NPR",
+          "currNam": "NEPALESE RUPEE  "
+        },
+        {
+          "alphaCd": "NZD",
+          "currNam": "NEW ZEALAND DOLLAR"
+        },
+        {
+          "alphaCd": "NIO",
+          "currNam": "NICARAGUA CORDOBA ORO"
+        },
+        {
+          "alphaCd": "NGN",
+          "currNam": "NIGERIAN NAIRA     "
+        },
+        {
+          "alphaCd": "NOK",
+          "currNam": "NORWEGIAN KRONE"
+        },
+        {
+          "alphaCd": "OMR",
+          "currNam": "OMAN RIAL"
+        },
+        {
+          "alphaCd": "PKR",
+          "currNam": "PAKISTANI RUPEE"
+        },
+        {
+          "alphaCd": "PAB",
+          "currNam": "PANAMA BALBOA"
+        },
+        {
+          "alphaCd": "PGK",
+          "currNam": "PAPUA NEW GUINEA KINA"
+        },
+        {
+          "alphaCd": "PYG",
+          "currNam": "PARAGUAY GUARANI"
+        },
+        {
+          "alphaCd": "PEN",
+          "currNam": "PERU NUEVO SOL     "
+        },
+        {
+          "alphaCd": "PHP",
+          "currNam": "PHILIPPINE PESO"
+        },
+        {
+          "alphaCd": "PLN",
+          "currNam": "POLISH ZLOTY"
+        },
+        {
+          "alphaCd": "QAR",
+          "currNam": "QATAR RIAL"
+        },
+        {
+          "alphaCd": "RON",
+          "currNam": "ROMANIAN LEU"
+        },
+        {
+          "alphaCd": "RUB",
+          "currNam": "RUSSIAN RUBLE"
+        },
+        {
+          "alphaCd": "RWF",
+          "currNam": "RWANDA FRANC"
+        },
+        {
+          "alphaCd": "SHP",
+          "currNam": "SAINT HELENA POUND"
+        },
+        {
+          "alphaCd": "WST",
+          "currNam": "SAMOA TALA    "
+        },
+        {
+          "alphaCd": "STN",
+          "currNam": "SAO TOME ANDPRINCIPE DOBRA NEW"
+        },
+        {
+          "alphaCd": "SAR",
+          "currNam": "SAUDI ARABIA RIYAL"
+        },
+        {
+          "alphaCd": "RSD",
+          "currNam": "SERBIAN DINAR"
+        },
+        {
+          "alphaCd": "SCR",
+          "currNam": "SEYCHELLES RUPEE"
+        },
+        {
+          "alphaCd": "SLE",
+          "currNam": "SIERRA LEONE SLE"
+        },
+        {
+          "alphaCd": "SGD",
+          "currNam": "SINGAPORE DOLLAR"
+        },
+        {
+          "alphaCd": "SBD",
+          "currNam": "SOLOMON ISLAND DOLLAR "
+        },
+        {
+          "alphaCd": "SOS",
+          "currNam": "SOMALI SHILLING"
+        },
+        {
+          "alphaCd": "ZAR",
+          "currNam": "SOUTH AFRICAN RAND"
+        },
+        {
+          "alphaCd": "KRW",
+          "currNam": "SOUTH KOREAN WON"
+        },
+        {
+          "alphaCd": "SSP",
+          "currNam": "SOUTH SUDAN POUND   "
+        },
+        {
+          "alphaCd": "LKR",
+          "currNam": "SRI LANKAN RUPEE"
+        },
+        {
+          "alphaCd": "SDG",
+          "currNam": "SUDANESE POUND"
+        },
+        {
+          "alphaCd": "SRD",
+          "currNam": "SURINAME DOLLAR     "
+        },
+        {
+          "alphaCd": "SZL",
+          "currNam": "SWAZILAND LILANGENI "
+        },
+        {
+          "alphaCd": "SEK",
+          "currNam": "SWEDISH KRONA"
+        },
+        {
+          "alphaCd": "CHF",
+          "currNam": "SWISS FRANC"
+        },
+        {
+          "alphaCd": "TWD",
+          "currNam": "TAIWAN DOLLAR"
+        },
+        {
+          "alphaCd": "TJS",
+          "currNam": "TAJIKISTAN SOMONI   "
+        },
+        {
+          "alphaCd": "TZS",
+          "currNam": "TANZANIAN SHILLING  "
+        },
+        {
+          "alphaCd": "THB",
+          "currNam": "THAI BAHT"
+        },
+        {
+          "alphaCd": "TOP",
+          "currNam": "TONGA PAANGA"
+        },
+        {
+          "alphaCd": "TTD",
+          "currNam": "TRINIDAD AND TOGABO DOLLAR"
+        },
+        {
+          "alphaCd": "TND",
+          "currNam": "TUNISIAN DINAR"
+        },
+        {
+          "alphaCd": "TRY",
+          "currNam": "TURKISH LIRA"
+        },
+        {
+          "alphaCd": "TMT",
+          "currNam": "TURKMENISTAN MANAT  "
+        },
+        {
+          "alphaCd": "UGX",
+          "currNam": "UGANDA SHILLING"
+        },
+        {
+          "alphaCd": "UAH",
+          "currNam": "UKRAINIAN HRYVNIA"
+        },
+        {
+          "alphaCd": "AED",
+          "currNam": "UNITED ARAB EMIRATES DIRHAM"
+        },
+        {
+          "alphaCd": "USD",
+          "currNam": "UNITED STATES DOLLAR"
+        },
+        {
+          "alphaCd": "UYU",
+          "currNam": "URUGUAY PESO"
+        },
+        {
+          "alphaCd": "UZS",
+          "currNam": "UZBEKISTAN SUM      "
+        },
+        {
+          "alphaCd": "VUV",
+          "currNam": "VANUATU VATU        "
+        },
+        {
+          "alphaCd": "VES",
+          "currNam": "VENEZUELAN BOLIVAR SOBERANO   "
+        },
+        {
+          "alphaCd": "VND",
+          "currNam": "VIETNAM DONG"
+        },
+        {
+          "alphaCd": "YER",
+          "currNam": "YEMEN RIAL"
+        },
+        {
+          "alphaCd": "ZMW",
+          "currNam": "ZAMBIA KWACHA"
+        },
+        {
+          "alphaCd": "ZWG",
+          "currNam": "ZIMBABWE GOLD"
+        }
+      ]
+    }

@@ -319,34 +319,6 @@ def invoke_next_worker(date: str, chunks: list, chunk_index: int) -> None:
         raise
 
 
-def fill_missing_rates(results: list[dict]) -> list[dict]:
-    """
-    Attempts to fill missing fx_rate values using the inverse rate.
-    If A->B is missing but B->A exists, computes 1 / B->A rate.
-    Records that cannot be filled remain as None and are excluded from the parquet.
-    """
-    rate_map = {
-        (r["from_currency"], r["to_currency"]): r["fx_rate"]
-        for r in results
-        if r["fx_rate"] is not None
-    }
-    filled = 0
-    missing = 0
-
-    for r in results:
-        if r["fx_rate"] is not None:
-            continue
-        inverse = rate_map.get((r["to_currency"], r["from_currency"]))
-        if inverse and inverse != 0:
-            r["fx_rate"] = round(1 / inverse, 10)
-            filled += 1
-        else:
-            missing += 1
-
-    logger.info(f"[fill_missing_rates] filled={filled} | still_missing={missing}")
-    return results
-
-
 # =============================================================================
 # SCRAPER — Playwright async worker
 # =============================================================================
@@ -356,7 +328,6 @@ async def scrape_chunk(date: str, pairs: list, chunk_id: int) -> list[dict]:
     """
     Scrapes exchange rates using Playwright.
     CONCURRENCY pages share a single browser context (required for --single-process).
-    429 responses are logged and recorded as fx_rate=None for fill_missing_rates to handle.
     """
     from playwright.async_api import async_playwright
 
@@ -552,11 +523,10 @@ def run_worker(date: str, chunks: list, chunk_index: int) -> dict:
             DATE_FORMAT_INPUT
         )
         records = asyncio.run(scrape_chunk(date, pairs, chunk_id))
-        results = fill_missing_rates(records)
-        s3_key = save_chunk_to_s3(results, date_str, chunk_id)
+        s3_key = save_chunk_to_s3(records, date_str, chunk_id)
 
-        written_count = len([r for r in results if r["fx_rate"] is not None])
-        skipped_count = len(results) - written_count
+        written_count = len([r for r in records if r["fx_rate"] is not None])
+        skipped_count = len(records) - written_count
 
         logger.info(
             f"[WORKER {chunk_id}/{len(chunks)}] Done | date={date_str} | "

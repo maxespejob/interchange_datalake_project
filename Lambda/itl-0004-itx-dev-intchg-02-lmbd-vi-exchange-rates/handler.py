@@ -209,14 +209,13 @@ def delete_existing_parquets(date_str: str) -> int:
 
 def build_s3_key(date_str: str, chunk_id: int) -> str:
     """
-    Builds the S3 key for a parquet chunk.
-    Format: <S3_PREFIX>/exchange_date=<date_str>/<YYYYMMDD>_chunk_<id>.parquet
-    Example: exchange-rates/brand=Visa/exchange_date=2026-02-01/20260201_chunk_1.parquet
+    Builds the S3 key for a parquet chunk inside a temporary folder.
     """
     file_date = datetime.strptime(date_str, DATE_FORMAT_INPUT).strftime(
         DATE_FORMAT_FILE
     )
-    return f"{S3_PREFIX}/exchange_date={date_str}/{file_date}_chunk_{chunk_id}.parquet"
+    # Cambio principal: Agregamos "/temp_chunks/" a la ruta
+    return f"{S3_PREFIX}/exchange_date={date_str}/temp_chunks/{file_date}_chunk_{chunk_id}.parquet"
 
 
 def save_chunk_to_s3(records: list[dict], date_str: str, chunk_id: int) -> str:
@@ -282,6 +281,18 @@ def invoke_next_worker(date: str, chunks: list, chunk_index: int) -> None:
     """
     if chunk_index >= len(chunks):
         logger.info("[invoke_next_worker] All chunks processed. Chain complete.")
+        try:
+            boto3.client("lambda").invoke(
+                FunctionName=FUNCTION_NAME,
+                InvocationType="Event",
+                Payload=json.dumps({
+                "mode": "consolidator",
+                "date": date
+                }),                
+            )
+        except Exception as e:
+            logger.error(f"[invoke_next_worker] Failed to invoke consolidator: {e}")
+            raise
         return
 
     try:
@@ -570,6 +581,82 @@ def run_worker(date: str, chunks: list, chunk_index: int) -> dict:
         )
         raise
 
+# =============================================================================
+# CONSOLIDATOR
+# =============================================================================
+
+def run_consolidator(date: str) -> dict:
+    """
+    Consolidator role:
+    - Reads all parquet chunks from the temp_chunks directory for a given date.
+    - Concatenates them into a single PyArrow table.
+    - Saves the unified parquet file to the final S3 path.
+    - Deletes the temporary chunks.
+    """
+    date_str = datetime.strptime(date, DATE_FORMAT_OUTPUT).strftime(DATE_FORMAT_INPUT)
+    file_date = datetime.strptime(date, DATE_FORMAT_OUTPUT).strftime(DATE_FORMAT_FILE)
+    
+    temp_prefix = f"{S3_PREFIX}/exchange_date={date_str}/temp_chunks/"
+    final_s3_key = f"{S3_PREFIX}/exchange_date={date_str}/Visa_{file_date}.parquet"
+    
+    logger.info(f"[CONSOLIDATOR] Starting consolidation for {date_str}...")
+    
+    s3 = boto3.client("s3")
+    tables = []
+    objects_to_delete = []
+
+    try:
+        # 1. Listar y leer todos los chunks temporales
+        paginator = s3.get_paginator("list_objects_v2")
+        for page in paginator.paginate(Bucket=S3_BUCKET, Prefix=temp_prefix):
+            for obj in page.get("Contents", []):
+                key = obj["Key"]
+                objects_to_delete.append({"Key": key})
+                
+                # Descargar a memoria
+                response = s3.get_object(Bucket=S3_BUCKET, Key=key)
+                buffer = io.BytesIO(response['Body'].read())
+                
+                # Leer parquet y agregarlo a la lista
+                table = pq.read_table(buffer)
+                tables.append(table)
+
+        if not tables:
+            logger.warning(f"[CONSOLIDATOR] No temporary chunks found at {temp_prefix}. Skipping.")
+            return {"statusCode": 200, "message": "No data to consolidate"}
+
+        # 2. Unir todas las tablas en una sola
+        consolidated_table = pa.concat_tables(tables)
+        total_records = consolidated_table.num_rows
+
+        # 3. Guardar el archivo consolidado final
+        out_buffer = io.BytesIO()
+        pq.write_table(consolidated_table, out_buffer)
+        out_buffer.seek(0)
+        
+        s3.put_object(
+            Bucket=S3_BUCKET,
+            Key=final_s3_key,
+            Body=out_buffer.getvalue(),
+            ContentType="application/octet-stream",
+        )
+        logger.info(f"[CONSOLIDATOR] Successfully saved {total_records} records to s3://{S3_BUCKET}/{final_s3_key}")
+
+        # 4. Limpiar los archivos temporales
+        s3.delete_objects(Bucket=S3_BUCKET, Delete={"Objects": objects_to_delete})
+        logger.info(f"[CONSOLIDATOR] Cleaned up {len(objects_to_delete)} temporary chunk(s).")
+
+        return {
+            "statusCode": 200,
+            "mode": "consolidator",
+            "date": date_str,
+            "total_records": total_records,
+            "final_file": final_s3_key
+        }
+
+    except Exception as e:
+        logger.error(f"[CONSOLIDATOR] Fatal error during consolidation: {e}")
+        raise
 
 # =============================================================================
 # MAIN HANDLER
@@ -593,6 +680,10 @@ def lambda_handler(event: dict, context) -> dict:
             chunk_index = event.get("chunk_index", 0)
             return run_worker(date, chunks, chunk_index)
 
+        if mode == "consolidator":
+            date = event["date"]
+            return run_consolidator(date)
+        
         raise ValueError(f"Unknown mode: '{mode}'. Use 'orchestrator' or 'worker'.")
 
     except KeyError as e:
